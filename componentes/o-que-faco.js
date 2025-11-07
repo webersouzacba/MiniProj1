@@ -7,7 +7,7 @@ export default {
       </p>
       <ul>
         <li>Controle do backlog do projeto;</li>
-        <li>Acompanhamento da excuação de sprints;</li>
+        <li>Acompanhamento da execuação de sprints;</li>
         <li>Controle de saldos e execução de contratos.</li>
       </ul>
     </section>
