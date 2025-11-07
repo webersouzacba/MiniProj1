@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MiniProj1 • SPA CV</title>
+  <link rel="stylesheet" href="./style.css" />
+  <script defer src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  <script type="module" src="./main.js"></script>
+</head>
+<body>
+  <div id="app" class="viewport">
+    <!-- SESSÃO SUPERIOR: MENU FIXO -->
+    <header class="app-header" aria-label="Cabeçalho e menu">
+    <div class="container header-grid">
+        <!-- Esquerda: avatar e nome -->
+        <div class="header-left">
+        <img class="avatar" src="./imagens/weber.jpeg" alt="Foto de perfil de {{ profile.nome }}">
+        <div class="brand">
+            <span class="dot"></span>
+            <span>{{ profile.nome }}</span>
+        </div>
+        </div>
+
+        <!-- Centro: navegação -->
+        <nav class="header-center" aria-label="Navegação principal">
+        <ul class="nav">
+            <li v-for="r in routes" :key="r.path">
+            <a :href="'#' + r.path" class="pill" :class="{ active: currentRoute === r.path }">
+                {{ r.label }}
+            </a>
+            </li>
+        </ul>
+        </nav>
+
+        <div class="header-right">
+        <a class="cta" :href="'mailto:' + profile.email" target="_blank" rel="noopener noreferrer">
+            <i data-feather="mail"></i><span>Contactar</span>
+        </a>
+        </div>
+    </div>
+    </header>
+
+
+    <!-- SESSÃO CENTRAL: CONTEÚDO DINÂMICO -->
+    <main class="container content" aria-live="polite">
+      <component :is="activeComponent"></component>
+    </main>
+
+    <!-- SESSÃO INFERIOR: RODAPÉ FIXO -->
+
+    <!--Minhas redes sociais-->
+
+    <footer class="app-footer" aria-label="Rodapé fixo">
+    <div class="container footer-grid">
+<ul class="socials">
+  <li v-for="s in socials" :key="s.icon">
+    <a class="icon-btn"
+       :href="s.href"
+       target="_blank"
+       rel="noopener noreferrer"
+       :aria-label="s.label">
+      <i :data-feather="s.icon"></i>
+      <span class="sr-only">{{ s.label }}</span> <!-- mantém acessível -->
+    </a>
+  </li>
+</ul>
+
+
+        <span class="muted">
+        © {{ new Date().getFullYear() }} {{ profile.nome }}
+        </span>
+    </div>
+    </footer>
+  </div>
+</body>
+</html>
